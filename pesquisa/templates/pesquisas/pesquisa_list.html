@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Lista de Pesquisas{% endblock %}
+
+{% block content %}
+<div class="mt-5">
+    <h1>Lista de Pesquisas</h1>
+    <ul class="list-group">
+        {% for pesquisa in pesquisas %}
+            <li class="list-group-item">{{ pesquisa }}</li>
+        {% endfor %}
+    </ul>
+    <a class="btn btn-primary mt-3" href="{% url 'pesquisa_create' %}">Adicionar Nova Pesquisa</a>
+</div>
+{% endblock %}

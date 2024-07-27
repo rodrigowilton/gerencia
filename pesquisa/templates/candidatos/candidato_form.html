@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Adicionar Candidato{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div class="card w-50">
+        <div class="card-body">
+            <h1 class="card-title">Adicionar Candidato</h1>
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-group mb-3">
+                    <label for="id_nome" style="font-weight: bold;">Nome do Candidato</label>
+                    {{ form.nome }}
+                </div>
+
+                <button type="submit" class="btn btn-primary">Salvar</button>
+            </form>
+            <a class="btn btn-secondary mt-3" href="{% url 'candidato_list' %}">Listar</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

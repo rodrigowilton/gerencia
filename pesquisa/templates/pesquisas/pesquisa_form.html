@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesquisa</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body, html {
+            height: 100%;
+        }
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100%;
+        }
+        .form-label {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="bg-light">
+    <div class="container">
+        <div class="card shadow-sm w-100" style="max-width: 800px;">
+            <div class="card-body">
+                <h1 class="card-title text-center text-uppercase">Preencha a Pesquisa</h1>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="{{ form.pesquisadora.id_for_label }}" class="form-label">Pesquisadora:</label>
+                        {{ form.pesquisadora }}
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6 mb-3 mb-md-0">
+                            <label for="{{ form.cidade.id_for_label }}" class="form-label">Cidade:</label>
+                            {{ form.cidade }}
+                        </div>
+                        <div class="col-md-6">
+                            <label for="{{ form.bairro.id_for_label }}" class="form-label">Bairro:</label>
+                            {{ form.bairro }}
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6 mb-3 mb-md-0">
+                            <label for="{{ form.sexo.id_for_label }}" class="form-label">Sexo:</label>
+                            {{ form.sexo }}
+                        </div>
+                        <div class="col-md-6">
+                            <label for="{{ form.idade.id_for_label }}" class="form-label">Idade:</label>
+                            {{ form.idade }}
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="{{ form.votaria_brazao.id_for_label }}" class="form-label">Você votaria numa indicação da família Brazao para vereador?</label>
+                        {{ form.votaria_brazao }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="{{ form.prefeito.id_for_label }}" class="form-label">Em quem você votaria para prefeito do Rio de Janeiro? (Induzida)</label>
+                        {{ form.prefeito }}
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Em quem você votaria para vereador? (Espontânea)</label>
+                        <div class="row mb-2">
+                            <div class="col-md-6">
+                                <input type="text" id="vereador1" name="vereador1" class="form-control" placeholder="Nome do candidato 1">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" id="vereador2" name="vereador2" class="form-control" placeholder="Nome do candidato 2">
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-md-6">
+                                <input type="text" id="vereador3" name="vereador3" class="form-control" placeholder="Nome do candidato 3">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" id="vereador4" name="vereador4" class="form-control" placeholder="Nome do candidato 4">
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-md-6">
+                                <input type="text" id="vereador5" name="vereador5" class="form-control" placeholder="Nome do candidato 5">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" id="vereador6" name="vereador6" class="form-control" placeholder="Nome do candidato 6">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" id="vereador7" name="vereador7" class="form-control" placeholder="Não sei" value="Não sei" readonly>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="{{ form.rede_social.id_for_label }}" class="form-label">Qual rede social você usa? (Induzida)</label>
+                        {{ form.rede_social }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="{{ form.vereador_induzido.id_for_label }}" class="form-label">Dos nomes citados em quem você votaria para VEREADOR? (Induzida)</label>
+                        {{ form.vereador_induzido }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="{{ form.prioridade_prefeito.id_for_label }}" class="form-label">Qual deve ser a prioridade do prefeito para seu bairro? (Induzida)</label>
+                        {{ form.prioridade_prefeito }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="{{ form.politico_mais_fez.id_for_label }}" class="form-label">Qual político que mais fez pela cidade? (Espontânea)</label>
+                        {{ form.politico_mais_fez }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="{{ form.votaria_presidente.id_for_label }}" class="form-label">Se a eleição para presidente fosse hoje, em quem você votaria? (Induzida)</label>
+                        {{ form.votaria_presidente }}
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Enviar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

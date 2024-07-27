@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Lista de Candidatos{% endblock %}
+
+{% block content %}
+<div class="mt-5">
+    <h1>Lista de Candidatos</h1>
+    <ul class="list-group">
+        {% for candidato in candidatos %}
+            <li class="list-group-item">{{ candidato.nome }} - {{ candidato.cargo }}</li>
+        {% endfor %}
+    </ul>
+    <a class="btn btn-primary mt-3" href="{% url 'candidato_create' %}">Adicionar Novo Candidato</a>
+</div>
+{% endblock %}
