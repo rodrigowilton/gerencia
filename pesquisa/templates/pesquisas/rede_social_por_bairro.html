@@ -1,0 +1,69 @@
+<!-- templates/pesquisas/rede_social_por_bairro.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Distribuição de Redes Sociais por Bairro</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            flex-direction: column;
+            background-color: #f2f2f2;
+        }
+        .container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+        th {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Distribuição de Redes Sociais por Bairro</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Bairro</th>
+                    <th>% Facebook</th>
+                    <th>% WhatsApp</th>
+                    <th>% Instagram</th>
+                    <th>% Twitter</th>
+                    <th>% YouTube</th>
+                    <th>% Outros</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for count in total_counts %}
+                <tr>
+                    <td>{{ count.bairro }}</td>
+                    <td>{{ count.percent_facebook|floatformat:2 }}%</td>
+                    <td>{{ count.percent_whatsapp|floatformat:2 }}%</td>
+                    <td>{{ count.percent_instagram|floatformat:2 }}%</td>
+                    <td>{{ count.percent_twitter|floatformat:2 }}%</td>
+                    <td>{{ count.percent_youtube|floatformat:2 }}%</td>
+                    <td>{{ count.percent_outros|floatformat:2 }}%</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

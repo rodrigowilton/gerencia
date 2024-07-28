@@ -14,5 +14,9 @@ urlpatterns = [
     path('pesquisas/relatorio/', pesquisa_list, name='pesquisa_list'),
     path('grafico-sexo/', sexo_pie_chart, name='sexo_pie_chart'),
     path('grafico-sexo2/', sexo_pie_chart2, name='sexo_pie_chart2'),
+    path('grafico-idade/', views.idade_pie_chart, name='idade_pie_chart'),
+    path('idade-por-bairro/', views.idade_por_bairro, name='idade_por_bairro'),
+    path('grafico-rede-social/', views.rede_social_pie_chart, name='rede_social_pie_chart'),
+    path('rede-social-por-bairro/', views.rede_social_por_bairro, name='rede_social_por_bairro'),
 
 ]
