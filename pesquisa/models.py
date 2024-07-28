@@ -85,5 +85,7 @@ class Pesquisa(models.Model):
 	vereador_espontaneo_5 = models.CharField(max_length=100, blank=True, null=True)
 	vereador_espontaneo_6 = models.CharField(max_length=100, blank=True, null=True)
 	
+	data = models.DateTimeField(auto_now_add=True)  # Exemplo de campo de data
+	
 	def __str__(self):
-		return f"Pesquisa {self.id} - {self.cidade}"
+		return f'{self.cidade} - {self.bairro}'
