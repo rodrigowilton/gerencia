@@ -1,0 +1,89 @@
+<!-- templates/pesquisas/sexo_pie_chart2.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Distribuição por Sexo</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            flex-direction: column;
+            background-color: #f2f2f2;
+        }
+        .container {
+            text-align: center;
+        }
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+        th {
+            background-color: #f9f9f9;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        input[type="submit"] {
+            padding: 10px;
+            margin: 10px 0;
+            width: 100%;
+            max-width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Distribuição por Sexo</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Bairro</th>
+                    <th>% Masculino</th>
+                    <th>% Feminino</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for count in total_counts %}
+                <tr>
+                    <td>{{ count.bairro }}</td>
+                    <td>{{ count.percent_masculino|floatformat:2 }}%</td>
+                    <td>{{ count.percent_feminino|floatformat:2 }}%</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <form method="post" action="">
+            {% csrf_token %}
+            <input type="submit" value="Adicionar Nova Pesquisa">
+        </form>
+    </div>
+</body>
+</html>

@@ -4,11 +4,10 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
 from .models import Candidato, Pesquisa
 from .forms import CandidatoForm, PesquisaForm
-from django.db.models import Count
-from matplotlib.figure import Figure
+from django.db.models import Count, Q, F, FloatField
+import matplotlib.pyplot as plt
 import io
 import urllib, base64
-import matplotlib.pyplot as plt
 
 
 
@@ -35,6 +34,22 @@ def sexo_pie_chart(request):
 
     # Renderizar o template com o gráfico
     return render(request, 'pesquisas/sexo_pie_chart.html', {'data': uri})
+
+
+def sexo_pie_chart2(request):
+    # Calcular percentagem de sexo por bairro
+    total_counts = Pesquisa.objects.values('bairro').annotate(
+        total=Count('id'),
+        masculino=Count('id', filter=Q(sexo='M')),
+        feminino=Count('id', filter=Q(sexo='F')),
+    )
+
+    for count in total_counts:
+        count['percent_masculino'] = (count['masculino'] / count['total']) * 100
+        count['percent_feminino'] = (count['feminino'] / count['total']) * 100
+
+    # Renderizar o template com a tabela
+    return render(request, 'pesquisas/sexo_pie_chart2.html', {'total_counts': total_counts})
 
 def candidato_list(request):
 	candidatos = Candidato.objects.all()
