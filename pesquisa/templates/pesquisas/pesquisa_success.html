@@ -23,11 +23,28 @@
         h1 {
             color: #4CAF50;
         }
+        .btn-primary {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .btn-primary:hover {
+            background-color: #45a049;
+        }
+        .spacer {
+            margin-bottom: 30px; /* Adiciona espaçamento de 3 linhas */
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Obrigado por participar da pesquisa!!</h1>
+        <div class="spacer"></div>
+        <button class="btn-primary" onclick="location.href='{% url 'pesquisa_create' %}'">Adicionar Nova Pesquisa</button>
     </div>
 </body>
 </html>

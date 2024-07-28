@@ -60,36 +60,6 @@
                         {{ form.prefeito }}
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Em quem você votaria para vereador? (Espontânea)</label>
-                        <div class="row mb-2">
-                            <div class="col-md-6">
-                                <input type="text" id="vereador1" name="vereador1" class="form-control" placeholder="Nome do candidato 1">
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" id="vereador2" name="vereador2" class="form-control" placeholder="Nome do candidato 2">
-                            </div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col-md-6">
-                                <input type="text" id="vereador3" name="vereador3" class="form-control" placeholder="Nome do candidato 3">
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" id="vereador4" name="vereador4" class="form-control" placeholder="Nome do candidato 4">
-                            </div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col-md-6">
-                                <input type="text" id="vereador5" name="vereador5" class="form-control" placeholder="Nome do candidato 5">
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" id="vereador6" name="vereador6" class="form-control" placeholder="Nome do candidato 6">
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <input type="text" id="vereador7" name="vereador7" class="form-control" placeholder="Não sei" value="Não sei" readonly>
-                        </div>
-                    </div>
-                    <div class="mb-3">
                         <label for="{{ form.rede_social.id_for_label }}" class="form-label">Qual rede social você usa? (Induzida)</label>
                         {{ form.rede_social }}
                     </div>
@@ -100,10 +70,6 @@
                     <div class="mb-3">
                         <label for="{{ form.prioridade_prefeito.id_for_label }}" class="form-label">Qual deve ser a prioridade do prefeito para seu bairro? (Induzida)</label>
                         {{ form.prioridade_prefeito }}
-                    </div>
-                    <div class="mb-3">
-                        <label for="{{ form.politico_mais_fez.id_for_label }}" class="form-label">Qual político que mais fez pela cidade? (Espontânea)</label>
-                        {{ form.politico_mais_fez }}
                     </div>
                     <div class="mb-3">
                         <label for="{{ form.votaria_presidente.id_for_label }}" class="form-label">Se a eleição para presidente fosse hoje, em quem você votaria? (Induzida)</label>

@@ -3,7 +3,6 @@ from django.db import models
 
 class Candidato(models.Model):
 	nome = models.CharField(max_length=100)
-	cargo = models.CharField(max_length=20, choices=[('Prefeito', 'Prefeito'), ('Vereador', 'Vereador')])
 	
 	def __str__(self):
 		return self.nome
@@ -40,6 +39,15 @@ class Pesquisa(models.Model):
 		('YT', 'YouTube'),
 		('OT', 'Outros'),
 	]
+	
+	PESQUISADORA_CHOICES = [
+		('P1', 'Pesquisador 1'),
+		('P2', 'Pesquisador 2'),
+		('P3', 'Pesquisador 3'),
+		('P4', 'Pesquisador 4'),
+		('P5', 'Pesquisador 5'),
+		('P6', 'Pesquisador 6'),
+	]
 	VEREADOR_INDUZIDO_CHOICES = [
 		('FM', 'Felipe Michel'),
 		('KB', 'Kaio Brazao'),
@@ -50,13 +58,18 @@ class Pesquisa(models.Model):
 	]
 	
 	cidade = models.CharField(max_length=100)
-	pesquisadora = models.CharField(max_length=100)
+	pesquisadora = models.CharField(max_length=2, choices=PESQUISADORA_CHOICES)
 	bairro = models.CharField(max_length=100)
 	sexo = models.CharField(max_length=1, choices=SEXO_CHOICES)
 	idade = models.CharField(max_length=5, choices=IDADE_CHOICES)
 	votaria_brazao = models.CharField(max_length=1, choices=VOTARIA_CHOICES)
-	prefeito = models.ForeignKey(Candidato, on_delete=models.SET_NULL, null=True, blank=True,
-								 limit_choices_to={'cargo': 'Prefeito'}, related_name='pesquisas_prefeito')
+	vereador = models.ForeignKey(
+		Candidato,
+		on_delete=models.SET_NULL,
+		null=True,
+		blank=True,
+		related_name='pesquisas_prefeito'  # Opcional, define o nome da relação reversa
+	)
 	rede_social = models.CharField(max_length=2, choices=REDES_SOCIAIS_CHOICES)
 	prioridade_prefeito = models.CharField(max_length=100)
 	politico_mais_fez = models.CharField(max_length=100)
