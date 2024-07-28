@@ -1,6 +1,7 @@
 from django.db import models
 
 
+
 class Candidato(models.Model):
 	nome = models.CharField(max_length=100)
 	

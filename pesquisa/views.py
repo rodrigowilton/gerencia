@@ -5,7 +5,36 @@ from django.urls import reverse
 from .models import Candidato, Pesquisa
 from .forms import CandidatoForm, PesquisaForm
 from django.db.models import Count
+from matplotlib.figure import Figure
+import io
+import urllib, base64
+import matplotlib.pyplot as plt
 
+
+
+def sexo_pie_chart(request):
+    # Contagem de sexo
+    masculino_count = Pesquisa.objects.filter(sexo='M').count()
+    feminino_count = Pesquisa.objects.filter(sexo='F').count()
+
+    # Dados do gráfico
+    labels = 'Masculino', 'Feminino'
+    sizes = [masculino_count, feminino_count]
+    explode = (0.1, 0)  # "explode" the 1st slice (Masculino)
+
+    fig, ax = plt.subplots()
+    ax.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%', shadow=True, startangle=90)
+    ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+
+    # Salvar o gráfico em um buffer
+    buf = io.BytesIO()
+    plt.savefig(buf, format='png')
+    buf.seek(0)
+    string = base64.b64encode(buf.read())
+    uri = urllib.parse.quote(string)
+
+    # Renderizar o template com o gráfico
+    return render(request, 'pesquisas/sexo_pie_chart.html', {'data': uri})
 
 def candidato_list(request):
 	candidatos = Candidato.objects.all()
