@@ -194,10 +194,34 @@ def vereador_pie_chart(request):
     return render(request, 'pesquisas/vereador_pie_chart.html', {'data': uri})
 
 
+def vereador_por_bairro(request):
+    pesquisas = Pesquisa.objects.all()
+    bairros = {}
+    total_por_bairro = {}
 
-def pesquisa_list(request):
-	bairro_counts = Pesquisa.objects.values('bairro').annotate(count=Count('bairro')).order_by('bairro')
-	return render(request, 'pesquisas/relatorio.html', {'bairro_counts': bairro_counts})
+    for pesquisa in pesquisas:
+        bairro = pesquisa.bairro
+        vereador = pesquisa.vereador
+
+        if bairro not in bairros:
+            bairros[bairro] = {v: {"quantidade": 0, "percent": 0} for v in set(pesquisas.values_list('vereador', flat=True))}
+            total_por_bairro[bairro] = 0
+
+        if vereador:
+            bairros[bairro][vereador]["quantidade"] += 1
+            total_por_bairro[bairro] += 1
+
+    for bairro, counts in bairros.items():
+        for vereador, data in counts.items():
+            if total_por_bairro[bairro] > 0:
+                data["percent"] = (data["quantidade"] / total_por_bairro[bairro]) * 100
+
+    context = {
+        "bairros": bairros,
+        "vereadores": sorted(bairros[list(bairros.keys())[0]].keys()) if bairros else [],
+    }
+
+    return render(request, "pesquisas/vereador_por_bairro.html", context)
 
 
 def pesquisa_create(request):
@@ -208,7 +232,7 @@ def pesquisa_create(request):
 			return redirect('pesquisa_success')
 	else:
 		form = PesquisaForm()
-	
+
 	return render(request, 'pesquisas/pesquisa_form.html', {'form': form})
 
 
@@ -216,18 +240,25 @@ def pesquisa_success(request):
 	return render(request, 'pesquisas/pesquisa_success.html')
 
 
+def relatorio_view(request):
+    # Gere o relatório
+    bairro_counts = Pesquisa.objects.values('bairro').annotate(count=Count('bairro')).order_by('bairro')
+
+    # Renderize o template do relatório
+    return render(request, 'pesquisas/relatorio.html', {'bairro_counts': bairro_counts})
+
 def pesquisa_view(request):
 	if request.method == 'POST':
 		form = PesquisaForm(request.POST)
 		if form.is_valid():
 			form.save()  # Salva o formulário
-			
+
 			# Gera o relatório
 			bairro_counts = Pesquisa.objects.values('bairro').annotate(count=Count('bairro')).order_by('bairro')
-			
+
 			# Renderiza o relatório
-			return render(request, 'relatorio.html', {'bairro_counts': bairro_counts})
+			return render(request, 'pesquisas/relatorio.html', {'bairro_counts': bairro_counts})
 	else:
 		form = PesquisaForm()
-	
+
 	return render(request, 'pesquisas/pesquisa_form.html', {'form': form})
