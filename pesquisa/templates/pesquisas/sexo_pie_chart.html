@@ -53,10 +53,9 @@
     <div class="container">
         <h1>Distribuição por Sexo</h1>
         <img src="data:image/png;base64,{{ data }}" alt="Pie Chart" class="img-fluid">
-        <form method="post" action="">
-            {% csrf_token %}
-            <a href="{% url 'pesquisa_create' %}" class="btn-primary-custom">Voltar</a>
-        </form>
+        <div class="text-center mt-3">
+            <button type="button" class="btn btn-primary-custom" onclick="window.location.href='{% url 'gerencia' %}'">Voltar</button>
+        </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </body>

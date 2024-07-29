@@ -171,19 +171,22 @@ def vereador_pie_chart(request):
 
     labels = []
     sizes = []
+    explode = []
 
     for pesquisa in pesquisas:
         vereador_id = pesquisa['vereador']
         if vereador_id:
             labels.append(dict(Pesquisa.VEREADOR_CHOICES).get(vereador_id, vereador_id))
             sizes.append(pesquisa['count'])
+            explode.append(0.1)  # Create an effect of exploded slice
         else:
             labels.append('Nenhum')
             sizes.append(pesquisa['count'])
+            explode.append(0.1)  # Same for 'Nenhum' slice
 
     fig, ax = plt.subplots()
-    ax.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=90)
-    ax.axis('equal')
+    ax.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=90, explode=explode)
+    ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
 
     buf = io.BytesIO()
     plt.savefig(buf, format='png')
@@ -193,6 +196,7 @@ def vereador_pie_chart(request):
     buf.close()
 
     return render(request, 'pesquisas/vereador_pie_chart.html', {'data': uri})
+
 
 
 def vereador_por_bairro(request):

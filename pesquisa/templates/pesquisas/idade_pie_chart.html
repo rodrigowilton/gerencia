@@ -13,8 +13,6 @@
             height: 100vh;
             margin: 0;
             font-family: Arial, sans-serif;
-            flex-direction: column;
-            background-color: #f2f2f2;
         }
         .container {
             text-align: center;
@@ -26,21 +24,15 @@
             border: 1px solid #ccc;
             padding: 20px;
             border-radius: 10px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin-top: 20px;
+            background-color: #f9f9f9;
         }
-        input[type="submit"] {
+        input[type="text"], input[type="submit"] {
             padding: 10px;
             margin: 10px 0;
             width: 100%;
             max-width: 300px;
             border: 1px solid #ccc;
             border-radius: 5px;
-            cursor: pointer;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
         }
         .btn-primary-custom {
             background-color: #007bff;
@@ -63,7 +55,7 @@
         <img src="data:image/png;base64,{{ data }}" alt="Pie Chart">
 
         <div class="text-center mt-3">
-            <button type="button" class="btn btn-primary-custom" onclick="window.location.href='{% url 'pesquisa_view' %}'">Voltar</button>
+            <button type="button" class="btn btn-primary-custom" onclick="window.location.href='{% url 'gerencia' %}'">Voltar</button>
         </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
