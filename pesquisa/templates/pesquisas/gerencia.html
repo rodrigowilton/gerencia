@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Índice</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            width: 50%;
+            max-width: 800px;
+        }
+        .header {
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .btn {
+            margin-bottom: 10px;
+        }
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+        }
+        .btn-group .btn:last-child {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="header text-center">
+            <h1 class="display-4">Página de Índice</h1>
+            <p class="lead">Escolha uma das opções abaixo para acessar diferentes seções do aplicativo.</p>
+        </div>
+        <div class="btn-group">
+            <a href="{% url 'pesquisa_create' %}" class="btn btn-primary">Criar Nova Pesquisa</a>
+            <a href="{% url 'sexo_pie_chart' %}" class="btn btn-primary">Gráfico Distribuição por Sexo</a>
+            <a href="{% url 'sexo_pie_chart2' %}" class="btn btn-primary">Distribuição por Sexo</a>
+            <a href="{% url 'idade_pie_chart' %}" class="btn btn-primary">Gráfico Distribuição por Idade</a>
+            <a href="{% url 'idade_por_bairro' %}" class="btn btn-primary">Distribuição Idade por Bairro</a>
+            <a href="{% url 'rede_social_pie_chart' %}" class="btn btn-primary">Gráfico Distribuição por Rede Social</a>
+            <a href="{% url 'rede_social_por_bairro' %}" class="btn btn-primary">Distribuição Rede Social por Bairro</a>
+            <a href="{% url 'vereador_pie_chart' %}" class="btn btn-primary">Gráfico Distribuição por Prefeito</a>
+            <a href="{% url 'vereador_por_bairro' %}" class="btn btn-primary">Distribuição Prefeito por Bairro</a>
+            <a href="{% url 'relatorio_view' %}" class="btn btn-primary">Distribuição Relatório Pesquisados</a>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.3/js/bootstrap.min.js"></script>
+</body>
+</html>

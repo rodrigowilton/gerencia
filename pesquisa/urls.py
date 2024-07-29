@@ -4,6 +4,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
+    path('gerencia/', views.gerencia, name='gerencia'),
     path('', views.pesquisa_view, name='pesquisa_view'),
     path('sexo_pie_chart/', views.sexo_pie_chart, name='sexo_pie_chart'),
     path('sexo_pie_chart2/', views.sexo_pie_chart2, name='sexo_pie_chart2'),

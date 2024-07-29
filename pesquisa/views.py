@@ -11,7 +11,8 @@ import urllib, base64
 from matplotlib.figure import Figure
 
 
-
+def gerencia(request):
+    return render(request, 'pesquisas/gerencia.html')
 
 def sexo_pie_chart(request):
     # Contagem de sexo
