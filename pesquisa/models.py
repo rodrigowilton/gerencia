@@ -57,10 +57,20 @@ class Pesquisa(models.Model):
 		('RC', 'Ramos Filho'),
 		('NS', 'Não Sabe'),
 	]
-	
-	cidade = models.CharField(max_length=100)
+
+	CIDADE_CHOICES = [
+		('NI', 'Nova Iguaçu'),
+	]
+
+	BAIRRO_CHOICES = [
+		('TP', 'Tropical'),
+		('ML', 'Monte Libano'),
+		('PT', 'Prata'),
+	]
+
+	cidade = models.CharField(max_length=2, choices=CIDADE_CHOICES)
 	pesquisadora = models.CharField(max_length=2, choices=PESQUISADORA_CHOICES)
-	bairro = models.CharField(max_length=100)
+	bairro = models.CharField(max_length=2, choices=BAIRRO_CHOICES)
 	sexo = models.CharField(max_length=1, choices=SEXO_CHOICES)
 	idade = models.CharField(max_length=5, choices=IDADE_CHOICES)
 	votaria_brazao = models.CharField(max_length=1, choices=VOTARIA_CHOICES)

@@ -49,6 +49,18 @@ class PesquisaForm(forms.ModelForm):
 		('P5', 'Pesquisador 5'),
 		('P6', 'Pesquisador 6'),
 	]
+
+	CIDADE_CHOICES = [
+		('', 'Escolha'),
+		('NI', 'Nova Iguaçu'),
+	]
+
+	BAIRRO_CHOICES = [
+		('', 'Escolha'),
+		('TP', 'Tropical'),
+		('ML', 'Monte Libano'),
+		('PT', 'Prata'),
+	]
 	
 	pesquisadora = forms.ChoiceField(
 		choices=PESQUISADORA_CHOICES,
@@ -65,6 +77,19 @@ class PesquisaForm(forms.ModelForm):
 		required=False,
 		widget=forms.Select(attrs={'class': 'form-control'})
 	)
+
+	cidade = forms.ChoiceField(
+		choices=CIDADE_CHOICES,
+		required=False,
+		widget=forms.Select(attrs={'class': 'form-control'})
+	)
+
+	bairro = forms.ChoiceField(
+		choices=BAIRRO_CHOICES,
+		required=False,
+		widget=forms.Select(attrs={'class': 'form-control'})
+	)
+
 	votaria_brazao = forms.ChoiceField(
 		choices=VOTARIA_CHOICES,
 		required=False,
@@ -86,6 +111,7 @@ class PesquisaForm(forms.ModelForm):
 		required=False,
 		widget=forms.Select(attrs={'class': 'form-control'})
 	)
+
 	prioridade_prefeito = forms.ChoiceField(
 		choices=[('', 'Escolha')] +
 				[(opcao, opcao) for opcao in
