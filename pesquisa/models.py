@@ -68,19 +68,19 @@ class Pesquisa(models.Model):
 		('PT', 'Prata'),
 	]
 
+	VEREADOR_CHOICES = [
+		('RODRIGO WILTON', 'Rodrigo Wilton'),
+		('HENRIQUE MUNIZ', 'Henrique Muniz'),
+		('FULANO', 'Fulano'),
+	]
+
 	cidade = models.CharField(max_length=2, choices=CIDADE_CHOICES)
 	pesquisadora = models.CharField(max_length=2, choices=PESQUISADORA_CHOICES)
 	bairro = models.CharField(max_length=2, choices=BAIRRO_CHOICES)
 	sexo = models.CharField(max_length=1, choices=SEXO_CHOICES)
 	idade = models.CharField(max_length=5, choices=IDADE_CHOICES)
 	votaria_brazao = models.CharField(max_length=1, choices=VOTARIA_CHOICES)
-	vereador = models.ForeignKey(
-		Candidato,
-		on_delete=models.SET_NULL,
-		null=True,
-		blank=True,
-		related_name='pesquisas_prefeito'  # Opcional, define o nome da relação reversa
-	)
+	vereador = models.CharField(max_length=15, choices=VEREADOR_CHOICES)
 	rede_social = models.CharField(max_length=2, choices=REDES_SOCIAIS_CHOICES)
 	prioridade_prefeito = models.CharField(max_length=100)
 	politico_mais_fez = models.CharField(max_length=100)

@@ -2,8 +2,8 @@
 
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
-from .models import Candidato, Pesquisa
-from .forms import CandidatoForm, PesquisaForm
+from .models import Pesquisa
+from .forms import  PesquisaForm
 from django.db.models import Count, Q, F, FloatField
 import matplotlib.pyplot as plt
 import io
@@ -165,16 +165,34 @@ def rede_social_por_bairro(request):
     return render(request, 'pesquisas/rede_social_por_bairro.html', {'total_counts': total_counts})
 
 
+def vereador_pie_chart(request):
+    pesquisas = Pesquisa.objects.values('vereador').annotate(count=Count('vereador'))
 
-def candidato_create(request):
-	if request.method == 'POST':
-		form = CandidatoForm(request.POST)
-		if form.is_valid():
-			form.save()
-			return redirect('candidato_list')
-	else:
-		form = CandidatoForm()
-	return render(request, 'candidatos/candidato_form.html', {'form': form})
+    labels = []
+    sizes = []
+
+    for pesquisa in pesquisas:
+        vereador_id = pesquisa['vereador']
+        if vereador_id:
+            labels.append(dict(Pesquisa.VEREADOR_CHOICES).get(vereador_id, vereador_id))
+            sizes.append(pesquisa['count'])
+        else:
+            labels.append('Nenhum')
+            sizes.append(pesquisa['count'])
+
+    fig, ax = plt.subplots()
+    ax.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=90)
+    ax.axis('equal')
+
+    buf = io.BytesIO()
+    plt.savefig(buf, format='png')
+    buf.seek(0)
+    string = base64.b64encode(buf.read())
+    uri = 'data:image/png;base64,' + string.decode('utf-8')
+    buf.close()
+
+    return render(request, 'pesquisas/vereador_pie_chart.html', {'data': uri})
+
 
 
 def pesquisa_list(request):
